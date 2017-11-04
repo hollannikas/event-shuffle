@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 
-const sequelize = new Sequelize(process.env.DATABASE_URL);
+const sequelize = new Sequelize(process.env.DATABASE_URL, {dialect: 'postgres'} );
 
 const Event = sequelize.define('Event', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
