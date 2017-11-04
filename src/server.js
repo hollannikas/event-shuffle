@@ -4,10 +4,7 @@ import { routes } from './routes/events';
 const port = process.env.PORT || 8000;
 
 const server = new Hapi.Server();
-server.connection({
-    host: 'localhost',
-    port: port
-});
+server.connection({ port: port });
 
 server.route(routes);
 
