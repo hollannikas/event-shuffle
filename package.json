@@ -1,0 +1,42 @@
+{
+  "name": "event-shuffle",
+  "version": "1.0.0",
+  "description": "Eventshuffle is an application to help scheduling events with friends, quite like http://doodle.com/ but in a much simplified way",
+  "main": "src/server.js",
+  "scripts": {
+    "lint": "eslint src",
+    "dev": "nodemon -w src --exec babel-node src"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "no-console": 0,
+      "no-unused-vars": 1
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hollannikas/event-shuffle"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015-node": "^6.1.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "hapi": "^16.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.10.0",
+    "nodemon": "^1.12.1"
+  }
+}
