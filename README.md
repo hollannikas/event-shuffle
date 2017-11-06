@@ -10,3 +10,5 @@ hapi
 babel
 
 eslint
+
+sequelize and pg. Using pg 6 because https://github.com/sequelize/sequelize/issues/8463
