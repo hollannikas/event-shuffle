@@ -4,9 +4,9 @@
   "description": "Eventshuffle is an application to help scheduling events with friends, quite like http://doodle.com/ but in a much simplified way",
   "main": "src/server.js",
   "scripts": {
-    "start": "./node_modules/.bin/babel-node src",
+    "start": "./node_modules/.bin/babel-node src/server.js",
     "lint": "eslint src",
-    "dev": "nodemon -w src --exec babel-node src"
+    "dev": "nodemon -w src --exec babel-node src/server.js"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
