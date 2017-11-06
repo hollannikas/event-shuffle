@@ -1,30 +1,14 @@
-import {Sequelize, DataTypes} from "sequelize";
-
-const sequelize = new Sequelize(process.env.DATABASE_URL, {dialect: 'postgres'});
-
-const Event = sequelize.define('Event', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: DataTypes.TEXT,
-    dates: DataTypes.ARRAY(DataTypes.STRING)
-});
-
-const Vote = sequelize.define('Vote', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    date: DataTypes.DATEONLY,
-    person: DataTypes.STRING
-});
-
-Event.hasMany(Vote, {as: 'votes'});
-
-Event.sync({force: true})
-    .then(() => Vote.sync({force: true}));
+import {
+    Event,
+    Vote,
+    sequelize
+} from '../model/events';
 
 function formatEvent(event) {
     const votes = [];
     event.votes.forEach(eventVote => {
         const index = votes.findIndex(vote => eventVote.date === vote.date );
         if(index === -1) {
-            console.log(`Creating new vote for ${eventVote.date}`);
             votes.push({date: eventVote.date, people: [eventVote.person]});
         } else {
             const vote = votes[index];
