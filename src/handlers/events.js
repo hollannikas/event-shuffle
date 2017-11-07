@@ -22,6 +22,7 @@ function formatEvent(event) {
         votes: votes
     }
 }
+
 function getAll() {
     return Event.findAll({attributes: ['id', 'name']})
         .then(event => event)

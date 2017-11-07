@@ -35,3 +35,6 @@ jobs:
         
       # is it pretty?
       - run: yarn lint
+      # does it work?
+      - run: yarn test
+
