@@ -88,7 +88,48 @@ function updateVote(eventId, date, name) {
     return Vote.findOrCreate( {where: {EventId: eventId, date: date, person: name}});
 }
 
+function getResult(eventId) {
+    return findById(eventId)
+        .then(event => {
+            const suitableDates = findDatesThatFitAllPeople(event.votes);
+            // find all people
+            // check that a date has all people => push
+            return {
+                id: event.id,
+                name: event.name,
+                suitableDates: suitableDates
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            return {error: err};
+        });
+}
+
+function findDatesThatFitAllPeople(votes) {
+    const people = extractPeopleFromVotes(votes);
+    // all people have voted = the amount of voters === the amount of people
+    return votes
+        .filter(vote => vote.people.length === people.length)
+        .map(vote => {
+            return { date: vote.date, people: people }
+        });
+}
+
+function extractPeopleFromVotes(votes) {
+    const people = [];
+    votes.forEach(vote => {
+        vote.people.forEach(person => {
+            if(people.indexOf(person) === -1) {
+                people.push(person);
+            }
+        });
+    });
+    return people;
+}
+
 export const eventList = (request, reply) => reply(getAll());
 export const event = (request, reply) => reply(findById(request.params.id));
+export const result = (request, reply) => reply(getResult(request.params.id));
 export const createEvent = (request, reply) => reply(create(request.payload)).code(201);
 export const addVote = (request, reply) => reply(createVote(request.params.id, request.payload)).code(201);

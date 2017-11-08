@@ -16,5 +16,5 @@ export const Vote = sequelize.define('Vote', {
 
 Event.hasMany(Vote, {as: 'votes'});
 
-Event.sync({force: true})
-    .then(() => Vote.sync({force: true}));
+Event.sync({force: false})
+    .then(() => Vote.sync({force: false}));

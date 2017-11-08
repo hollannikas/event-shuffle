@@ -2,13 +2,15 @@ import {
     event,
     eventList,
     createEvent,
-    addVote
+    addVote,
+    result
 } from '../handlers/events';
 import Joi from 'joi';
 
 export const routes = [
     { method: 'GET', path: '/event/list', handler: eventList },
     { method: 'GET', path: '/event/{id}', handler: event },
+    { method: 'GET', path: '/event/{id}/results', handler: result },
     { method: 'POST', path: '/event/{id}/vote', config: {
         handler: addVote,
         validate: {
