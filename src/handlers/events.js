@@ -56,8 +56,11 @@ function findById(id) {
 }
 
 function create(event) {
+    console.log(event);
+    console.log(event.name);
     return Event.create(event)
         .then(event => {
+            console.log(event.name);
             return {id: event.id};
         })
         .catch(err => {
