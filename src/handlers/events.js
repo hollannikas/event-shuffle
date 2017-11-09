@@ -3,6 +3,7 @@ import {
     Vote,
     sequelize
 } from '../model/events';
+import { findDatesThatFitAllPeople } from "./result-helper";
 
 function formatEvent(event) {
     const votes = [];
@@ -92,8 +93,7 @@ function getResult(eventId) {
     return findById(eventId)
         .then(event => {
             const suitableDates = findDatesThatFitAllPeople(event.votes);
-            // find all people
-            // check that a date has all people => push
+
             return {
                 id: event.id,
                 name: event.name,
@@ -104,28 +104,6 @@ function getResult(eventId) {
             console.log(err);
             return {error: err};
         });
-}
-
-function findDatesThatFitAllPeople(votes) {
-    const people = extractPeopleFromVotes(votes);
-    // all people have voted = the amount of voters === the amount of people
-    return votes
-        .filter(vote => vote.people.length === people.length)
-        .map(vote => {
-            return { date: vote.date, people: people }
-        });
-}
-
-function extractPeopleFromVotes(votes) {
-    const people = [];
-    votes.forEach(vote => {
-        vote.people.forEach(person => {
-            if(people.indexOf(person) === -1) {
-                people.push(person);
-            }
-        });
-    });
-    return people;
 }
 
 export const eventList = (request, reply) => reply(getAll());
