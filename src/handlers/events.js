@@ -68,7 +68,7 @@ function updateVote(eventId, date, name) {
 }
 
 function createVote(eventId, vote) {
-  const { name, dates } = vote;
+  const { name, votes: dates } = vote;
 
   return Promise.all(dates.map(date => updateVote(eventId, date, name)))
     .then(() => findById(eventId))
