@@ -5,7 +5,7 @@ export const sequelize = new Sequelize(process.env.DATABASE_URL, { dialect: 'pos
 export const Event = sequelize.define('Event', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: DataTypes.TEXT,
-  dates: DataTypes.ARRAY(DataTypes.STRING),
+  dates: DataTypes.ARRAY(DataTypes.DATEONLY),
 });
 
 export const Vote = sequelize.define('Vote', {
