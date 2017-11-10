@@ -8,25 +8,50 @@ import {
 import Joi from 'joi';
 
 export const routes = [
-    { method: 'GET', path: '/api/v1/event/list', handler: eventList },
-    { method: 'GET', path: '/api/v1/event/{id}', handler: event },
-    { method: 'GET', path: '/api/v1/event/{id}/results', handler: result },
-    { method: 'POST', path: '/api/v1/event/{id}/vote', config: {
-        handler: addVote,
+    {method: 'GET', path: '/api/v1/event/list', handler: eventList},
+    {
+        method: 'GET', path: '/api/v1/event/{id}', config: {
+        handler: event,
         validate: {
-            payload: {
-                name: Joi.string().min(1).required(),
-                votes: Joi.array().min(1).required()
+            params: {
+                id: Joi.number()
             }
         }
-    } },
-    { method: 'POST', path: '/api/v1/event', config: {
+    }
+    },
+    {
+        method: 'GET', path: '/api/v1/event/{id}/results', config: {
+        handler: result,
+        validate: {
+            params: {
+                id: Joi.number()
+            }
+        }
+    }
+    },
+    {
+        method: 'POST', path: '/api/v1/event/{id}/vote', config: {
+        handler: addVote,
+        validate: {
+            params: {
+                id: Joi.number()
+            },
+            payload: {
+                name: Joi.string().required(),
+                votes: Joi.array().items(Joi.date()).min(1).unique().required()
+            }
+        }
+    }
+    },
+    {
+        method: 'POST', path: '/api/v1/event', config: {
         handler: createEvent,
         validate: {
             payload: {
-                name: Joi.string().min(1).required(),
-                dates: Joi.array().min(1).required()
+                name: Joi.string().required(),
+                dates: Joi.array().items(Joi.date()).min(1).unique().required()
             }
         }
-    } }
+    }
+    }
 ];
