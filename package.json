@@ -7,7 +7,7 @@
     "start": "./node_modules/.bin/babel-node src/server.js",
     "lint": "eslint src",
     "dev": "nodemon -w src --exec babel-node src/server.js",
-    "test": "mocha src/test --compilers js:babel-core/register"
+    "test": "mocha src/test --require babel-core/register"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -42,7 +42,6 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "chai-http": "^3.0.0",
     "eslint": "^4.10.0",
     "mocha": "^4.0.1",
     "nodemon": "^1.12.1"
