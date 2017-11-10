@@ -1,7 +1,8 @@
+/* global Promise */
+
 import {
     Event,
-    Vote,
-    sequelize
+    Vote
 } from '../model/events';
 import { findDatesThatFitAllPeople } from "./result-helper";
 
@@ -73,11 +74,8 @@ function create(event) {
 function createVote(eventId, vote) {
     const name = vote.name;
     const dates = vote.votes;
-    return sequelize.transaction(() => {
-        dates.forEach(date => {
-            updateVote(eventId, date, name);
-        });
-    })
+
+    return Promise.all(dates.map(date => updateVote(eventId, date, name)))
     .then(() => findById(eventId))
     .catch(err => {
         console.log(err);
