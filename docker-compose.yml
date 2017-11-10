@@ -1,0 +1,18 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: yarn start
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://shuffler@postgres/shuffler
+  postgres:
+    image: postgres:10.0-alpine
+    environment:
+      POSTGRES_USER: shuffler
