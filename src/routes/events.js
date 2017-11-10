@@ -8,10 +8,10 @@ import {
 import Joi from 'joi';
 
 export const routes = [
-    { method: 'GET', path: '/event/list', handler: eventList },
-    { method: 'GET', path: '/event/{id}', handler: event },
-    { method: 'GET', path: '/event/{id}/results', handler: result },
-    { method: 'POST', path: '/event/{id}/vote', config: {
+    { method: 'GET', path: '/api/v1/event/list', handler: eventList },
+    { method: 'GET', path: '/api/v1/event/{id}', handler: event },
+    { method: 'GET', path: '/api/v1/event/{id}/results', handler: result },
+    { method: 'POST', path: '/api/v1/event/{id}/vote', config: {
         handler: addVote,
         validate: {
             payload: {
@@ -20,7 +20,7 @@ export const routes = [
             }
         }
     } },
-    { method: 'POST', path: '/event', config: {
+    { method: 'POST', path: '/api/v1/event', config: {
         handler: createEvent,
         validate: {
             payload: {
