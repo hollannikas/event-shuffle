@@ -4,7 +4,12 @@ import { routes } from './routes/events';
 const port = process.env.PORT || 8000;
 
 const server = new Hapi.Server();
-server.connection({ port: port });
+server.connection({
+    port: port,
+    routes: {
+        cors: true
+    }
+});
 
 server.route(routes);
 
