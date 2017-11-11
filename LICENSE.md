@@ -1,6 +1,6 @@
 The MIT License
 
-Copyright (c) 2017hollannikas
+Copyright (c) 2017, hollannikas
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
