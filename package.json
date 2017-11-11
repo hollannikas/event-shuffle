@@ -36,9 +36,12 @@
     "babel-preset-es2015-node": "^6.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "hapi": "^16.6.2",
+    "hapi-swagger": "^8.0.0",
+    "inert": "^4.2.1",
     "joi": "^13.0.1",
     "pg": "6.4.2",
-    "sequelize": "4.22.2"
+    "sequelize": "4.22.2",
+    "vision": "^4.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",

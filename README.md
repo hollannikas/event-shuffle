@@ -15,13 +15,17 @@ If you have docker compose on your machine you can simply run `docker-compose up
 
 ### API documentation
 
-*TODO: Add swagger doc link when available*
+You can find the swagger documentation on heroku at [https://event-shuffle.herokuapp.com/documentation](https://event-shuffle.herokuapp.com/documentation).
+The local swagger doc can of course be found on [http://localhost:8000/documentation](http://localhost:8000/documentation)
 
 ### Packages used
 
 * [babel](https://github.com/babel/babel) for ES2015 fun
 * [hapi](https://github.com/hapijs/hapi) seems like a sane server framework
 * [joi](https://github.com/hapijs/joi) for data spec and validation
+* [hapi-swagger](https://github.com/glennjones/hapi-swagger) hapi-swagger for OpenAPI documentation
+* [Inert](https://github.com/hapijs/inert) to serve the swagger doc
+* [Vision](https://github.com/hapijs/vision) to render the swagger doc
 * [eslint](https://github.com/eslint/eslint) with [AirBnB's style guide](https://github.com/airbnb/javascript) to make 
 sure things are readable and simple and to remind me to destructure ✨
 * [Sequelize](https://github.com/sequelize/sequelize) as ORM, which I thought would save me time. Boy did it. NOT.
