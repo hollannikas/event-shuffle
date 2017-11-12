@@ -715,6 +715,12 @@ boom@^6.0.0:
   dependencies:
     hoek "5.x.x"
 
+boom@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/boom/-/boom-7.1.1.tgz#50392a4e3417e971f1ad28622c20e832275260bb"
+  dependencies:
+    hoek "5.x.x"
+
 boxen@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/boxen/-/boxen-1.2.2.tgz#3f1d4032c30ffea9d4b02c322eaf2ea741dcbce5"

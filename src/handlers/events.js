@@ -1,14 +1,26 @@
 /* global Promise */
 
+import Boom from 'boom';
+import * as SequelizeErrors from 'sequelize/lib/errors'; // Why are these not exposed in Sequelized?
 import {
   Event,
   Vote,
 } from '../model/events';
 import { findDatesThatFitAllPeople } from './result-helper';
 
+function NotFoundException(message) {
+  this.message = message;
+}
+
 function handleError(err) { // eslint-disable-next-line no-console
   console.log(err);
-  return { error: err };
+  if (err instanceof NotFoundException) {
+    return Boom.notFound(err.message);
+  }
+  if (err instanceof SequelizeErrors.ForeignKeyConstraintError) {
+    return Boom.notFound();
+  }
+  return Boom.internal(err);
 }
 
 function formatEvent(event) {
@@ -52,7 +64,7 @@ function findById(id) {
       if (event) {
         return formatEvent(event);
       }
-      return 'Not found';
+      throw new NotFoundException(`There is no event with id ${id}`);
     })
     .catch(handleError);
 }
@@ -78,13 +90,16 @@ function createVote(eventId, vote) {
 function getResult(eventId) {
   return findById(eventId)
     .then((event) => {
-      const suitableDates = findDatesThatFitAllPeople(event.votes);
+      if (event.id) {
+        const suitableDates = findDatesThatFitAllPeople(event.votes);
 
-      return {
-        id: event.id,
-        name: event.name,
-        suitableDates,
-      };
+        return {
+          id: event.id,
+          name: event.name,
+          suitableDates,
+        };
+      }
+      throw new NotFoundException(`There is no event with id ${eventId}`);
     })
     .catch(handleError);
 }

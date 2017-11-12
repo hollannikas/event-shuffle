@@ -13,6 +13,8 @@ A running version can be found on heroku at [https://event-shuffle.herokuapp.com
 
 If you have docker compose on your machine you can simply run `docker-compose up` and connect to port `8000`
 
+Both versions (heroku and docker) use a [PostgreSQL](https://www.postgresql.org/) database
+
 ### API documentation
 
 You can find the swagger documentation on heroku at [https://event-shuffle.herokuapp.com/documentation](https://event-shuffle.herokuapp.com/documentation).
@@ -26,6 +28,7 @@ The local swagger doc can of course be found on [http://localhost:8000/documenta
 * [hapi-swagger](https://github.com/glennjones/hapi-swagger) hapi-swagger for OpenAPI documentation
 * [Inert](https://github.com/hapijs/inert) to serve the swagger doc
 * [Vision](https://github.com/hapijs/vision) to render the swagger doc
+* [Boom](https://github.com/hapijs/boom) makes thrown errors readable
 * [eslint](https://github.com/eslint/eslint) with [AirBnB's style guide](https://github.com/airbnb/javascript) to make 
 sure things are readable and simple and to remind me to destructure ✨
 * [Sequelize](https://github.com/sequelize/sequelize) as ORM, which I thought would save me time. Boy did it. NOT.
@@ -33,3 +36,10 @@ sure things are readable and simple and to remind me to destructure ✨
 * [chai](https://github.com/chaijs/chai) for BDD style assertions
 * [mocha](https://github.com/mochajs/mocha) test framework
 * [nodemon](https://github.com/remy/nodemon) to restart node when I save
+
+### TODO
+
+* Add coverage report
+* Option to use SQLite 3 when no `DATABASE_URL` is specified
+* API tests (would use SQLite in stead of postgresql)
+* Separate DB from model
